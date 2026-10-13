@@ -1,0 +1,102 @@
+/* Task 1 - Book a train ticket (Bootstrap + own CSS) */
+:root {
+  --green: #0F6B5F;
+  --amber: #F2A93B;
+  --ink: #16302B;
+  --field: #F4F7F5;
+  --page: #E6EFEC;
+  --bs-body-font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 1.0625rem;
+}
+
+.ticket {
+  max-width: 920px;
+  margin-inline: auto;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 24px 48px rgba(22, 48, 43, .16);
+  overflow: hidden;
+}
+.ticket-head { background: var(--green); color: #fff; padding: 2rem 2.5rem; }
+.ticket-head h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin: 0; }
+.ticket-body { padding: 2rem 2.5rem 2.5rem; }
+@media (max-width: 575.98px) {
+  .ticket-head { padding: 1.25rem 1.5rem; }
+  .ticket-body { padding: 1.25rem 1.5rem 1.75rem; }
+}
+
+/* labels and fields */
+.form-label, .field-title { font-weight: 600; color: var(--ink); }
+.form-control, .form-select {
+  background-color: var(--field);
+  border: 1px solid var(--page);
+  border-radius: 16px;
+  color: var(--ink);
+  font-family: inherit;
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--field);
+  border-color: var(--green);
+  box-shadow: 0 0 0 .25rem rgba(15, 107, 95, .2);
+}
+.form-control::placeholder { color: #6b7d78; opacity: 1; }
+
+/* floating labels: always raised, the placeholder is a hint (so Clear really empties the field) */
+.form-floating > .form-control { height: calc(3.4rem + 2px); padding-top: 1.55rem; padding-bottom: .3rem; }
+.form-floating > label { color: #6b7d78; font-size: .9rem; }
+.form-floating > .form-control::placeholder { color: var(--ink); opacity: .8; }
+.form-floating > .form-control:placeholder-shown ~ label,
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  transform: scale(.85) translateY(-.6rem) translateX(.15rem);
+  opacity: 1;
+}
+.form-floating > .form-control:placeholder-shown ~ label::after { background: transparent; }
+
+/* One way / Round trip: two radios as a segmented pill */
+.trip-switch { border: 1.5px solid var(--green); border-radius: 999px; overflow: hidden; display: inline-flex; }
+.trip-switch .btn {
+  border: 0; border-radius: 0; padding: .7rem 1.6rem; font-weight: 600;
+  color: var(--green); background: #fff; font-family: inherit;
+}
+.btn-check:checked + .btn { background: var(--green); color: #fff; }
+.btn-check:focus-visible + .btn { outline: 3px solid var(--amber); outline-offset: -3px; }
+
+/* radios, checkbox, switch */
+.form-check-input { border-color: #b9c9c4; background-color: #fff; }
+.form-check-input:checked { background-color: var(--green); border-color: var(--green); }
+.form-check-input:focus { border-color: var(--green); box-shadow: 0 0 0 .25rem rgba(15, 107, 95, .2); }
+.form-switch { padding-left: 3.4em; }
+.form-switch .form-check-input { width: 2.4em; height: 1.2em; margin-left: -3.4em; }
+.form-check-label { color: var(--ink); }
+
+/* phone prefix */
+.input-group-text.prefix {
+  background: var(--green); color: #fff; font-weight: 700; border: 0;
+  border-radius: 16px 0 0 16px;
+}
+.input-group > .form-control { border-radius: 0 16px 16px 0; }
+
+/* buttons */
+.btn-find, .btn-clear {
+  font-family: inherit; font-weight: 700; border-radius: 999px; padding: .8rem 2rem;
+  border: 1.5px solid var(--ink); color: var(--ink);
+}
+.btn-find { background: var(--amber); border-color: var(--amber); }
+.btn-find:hover, .btn-find:focus-visible { background: #e29a28; border-color: #e29a28; color: var(--ink); }
+.btn-clear { background: #fff; }
+.btn-clear:hover, .btn-clear:focus-visible { background: var(--page); color: var(--ink); border-color: var(--ink); }
+.btn:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+
+/* phone: Find trains above Clear without changing the HTML order */
+.actions { display: flex; flex-direction: column-reverse; gap: .75rem; }
+@media (min-width: 576px) {
+  .actions { flex-direction: row; justify-content: flex-end; }
+}

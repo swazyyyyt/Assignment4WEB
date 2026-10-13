@@ -1,0 +1,23 @@
+/* Task 2 - errors only after the user touched a field (:user-invalid / :user-valid) */
+.invalid-feedback { color: #ff6b6b; }
+
+/* text-like fields, select, textarea */
+.form-control:user-invalid, .form-select:user-invalid {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+.form-control:user-invalid:focus, .form-select:user-invalid:focus { box-shadow: 0 0 0 .25rem rgba(220,53,69,.3); }
+.form-control:user-valid, .form-select:user-valid { border-color: var(--ok); }
+
+/* message sits right after the field, so ~ is enough */
+.form-control:user-invalid ~ .invalid-feedback,
+.form-select:user-invalid ~ .invalid-feedback { display: block; }
+
+/* checkbox: input + label + message inside .form-check */
+.form-check-input:user-invalid { border-color: #dc3545; }
+.form-check-input:user-invalid ~ .form-check-label { color: #ff6b6b; }
+.form-check-input:user-invalid ~ .invalid-feedback { display: block; }
+
+/* radio group: message after the group is shown when any radio is invalid */
+.radio-group:has(.form-check-input:user-invalid) + .invalid-feedback { display: block; }
+.radio-group:has(.form-check-input:user-invalid) .form-check-input { border-color: #dc3545; }
